@@ -11,8 +11,7 @@ from io import TextIOWrapper
 
 def solution_raw(file: TextIOWrapper) -> str:
     input_lines = file.readlines()
-    answer = ""
-    return answer
+    return ""
 
 
 def get_cases(case_dir):
@@ -51,16 +50,8 @@ def eval_cases(solution_pipeline, cases, prefix="", max_output_len=80):
                     trimmed_expected = expected_output[:max_output_len]
                     trimmed_solution = solution_output[:max_output_len]
 
-                    if len(expected_output) > max_output_len:
-                        expected_ellipsis = "..."
-                    else:
-                        expected_ellipsis = ""
-
-                    if len(solution_output) > max_output_len:
-                        solution_ellipsis = "..."
-                    else:
-                        solution_ellipsis = ""
-
+                    expected_ellipsis = "..." if len(expected_output) > max_output_len else ""
+                    solution_ellipsis = "..." if len(solution_output) > max_output_len else ""
                     print(f"{prefix}#{case_number}: Fail")
                     print(f"    Expected: {trimmed_expected}{expected_ellipsis}")
                     print(f"    Actual  : {trimmed_solution}{solution_ellipsis}")
@@ -80,16 +71,13 @@ def eval_solution(pipeline, problem_dir, max_output_len=80):
     print(f"Sample cases: {sample_eval[0]} / {sample_eval[0] + sample_eval[1]}")
     print(f"Test cases: {test_eval[0]} / {test_eval[0] + test_eval[1]}")
 
-    pass_all = (sample_eval[1] + test_eval[1] == 0)
-    return pass_all
+    return (sample_eval[1] + test_eval[1] == 0)
 
 
 def get_function_annotations(function):
     annotations = function.__annotations__
 
-    # TODO: Modify type annotation (t)
-    annotation_doc = "\n".join([f"# {n}: {t}" for n, t in annotations.items()])
-    return annotation_doc
+    return "\n".join([f"# {n}: {t}" for n, t in annotations.items()])
 
 
 def get_function_head(function):
@@ -169,8 +157,7 @@ if __name__ == "__main__":
                 def pipeline(input_file):
                     input_args = problem_module.read_input(input_file)
                     output = solution_module.solution(*input_args)
-                    answer = problem_module.print_output(output)
-                    return answer
+                    return problem_module.print_output(output)
 
                 pass_all = eval_solution(pipeline, problem_dir, args.max_output_len)
 

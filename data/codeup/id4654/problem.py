@@ -22,8 +22,7 @@ def read_input(file: TextIOWrapper) -> Tuple[int, List[int]]:
 
 
 def solution(n: int, heights: List[int]) -> List[int]:
-    answer = []
-    return answer
+    return []
 
 
 def print_output(output: List[int]) -> str:

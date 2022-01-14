@@ -17,9 +17,7 @@ def read_input(file: TextIOWrapper) -> Tuple[int, int]:
 
 
 def solution(arg1: int, arg2: int) -> int:
-    # You should provide skeleton code of solution
-    answer = 0
-    return answer
+    return 0
 
 
 def print_output(output: int) -> str:
